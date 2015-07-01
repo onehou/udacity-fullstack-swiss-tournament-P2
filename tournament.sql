@@ -1,8 +1,7 @@
-CREATE DATABASE tournament;
+ CREATE DATABASE tournament;
+ \c tournament;
 
-\c tournament;
-
-DROP TABLE players, matches, results CASCADE;
+ DROP TABLE players, results CASCADE;
 
 CREATE TABLE players (
         player_id serial PRIMARY KEY,
@@ -10,15 +9,8 @@ CREATE TABLE players (
 );
 
 
-CREATE TABLE matches (
-        match_id serial PRIMARY KEY NOT NULL,
-        match_date date NOT NULL,
-        player1 integer REFERENCES players(player_id) NOT NULL,
-        player2 integer REFERENCES players(player_id) NOT NULL  
-);
-
 CREATE TABLE results (
-        match_id integer REFERENCES matches(match_id) NOT NULL,
+        match_id serial PRIMARY KEY,
         winner integer REFERENCES players(player_id) NOT NULL,
         loser integer REFERENCES players(player_id) NOT NULL
 );
@@ -28,46 +20,27 @@ INSERT INTO players (player_id, name) VALUES
         (default, 'Curly'), (default, 'Shemp'),
         (default, 'Curly Joe'), (default, 'Joe Curly');
 
-INSERT INTO matches (match_id, match_date, player1, player2) VALUES
-        (default, '6/1/2015', 1, 2),
-        (default, '6/2/2015', 3, 2),
-        (default, '6/4/2015', 1, 4);
-
 INSERT INTO results (match_id, winner, loser) VALUES
-        (1, 1, 2),
-        (2, 3, 2),
-        (3, 1, 4);
-
-CREATE VIEW num_of_matches AS
-  SELECT players.name, count(matches.match_id) AS total_matches
-      FROM players
-      LEFT JOIN matches
-      ON players.player_id = matches.player1 OR players.player_id = matches.player2
-      GROUP BY players.name
-      ORDER BY total_matches DESC;
+        (default, 1, 2),
+        (default, 3, 2),
+        (default, 1, 4);
 
 
-CREATE VIEW num_of_wins AS
-  SELECT players.name, count(results.winner) AS total_wins
-      FROM players
-      LEFT JOIN results
-      ON players.player_id = results.winner
-      GROUP BY players.name
-      ORDER BY total_wins DESC;
+CREATE VIEW wins AS
+SELECT players.player_id, players.name, count(results.winner) as total_winners
+FROM  players
+LEFT JOIN results
+ON players.player_id = results.winner
+GROUP BY player_id
+ORDER BY total_winners desc;
 
 
-
-CREATE VIEW standings AS 
-  SELECT players.name, players.player_id,
-  (SELECT count(*) FROM results WHERE results.winner = players.player_id) as final_wins,
-  (SELECT count(*) FROM matches WHERE matches.player1 = players.player_id
-   OR matches.player2 = players.player_id) as final_matches
-  FROM players, results, matches
-  GROUP BY players.player_id
-  ORDER BY final_wins DESC;
-
-
-
-
+CREATE VIEW standings AS
+SELECT players.player_id, players.name,
+(SELECT count(results.winner) FROM results WHERE players.player_id = results.winner) AS total_wins,
+(SELECT count(results.winner) FROM results WHERE players.player_id = results.winner
+  OR players.player_id = results.loser) AS total_matches
+FROM players
+ORDER BY total_wins desc, total_matches desc;
 
 

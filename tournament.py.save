@@ -15,7 +15,7 @@ def deleteMatches():
     """Remove all the match records from the database."""
     cdb = connect()
     c = cdb.cursor()
-    c.execute("DELETE from results;")
+    c.execute("BEGIN; DELETE from results; DELETE from matches; COMMIT;")
     cdb.commit()
     cdb.close()
 
@@ -37,7 +37,7 @@ def countPlayers():
     player_count = c.fetchall()[0][0]
     cdb.close()
     return player_count
-
+print countPlayers()  #run python tournament.py to make sure the output is 0
 
 def registerPlayer(name):
     """Adds a player to the tournament database.
@@ -48,12 +48,6 @@ def registerPlayer(name):
     Args:
       name: the player's full name (need not be unique).
     """
-
-    cdb = connect()
-    c = cdb.cursor()
-    c.execute("INSERT INTO players(player_id, name) VALUES (default, %s);", (name,))
-    cdb.commit()
-    cdb.close()
 
 
 def playerStandings():
@@ -69,11 +63,7 @@ def playerStandings():
         wins: the number of matches the player has won
         matches: the number of matches the player has played
     """
-    cdb = connect()
-    c = cdb.cursor()
-    c.execute("SELECT * FROM standings;")
-    matches = c.fetchall()
-    return matches
+
 
 def reportMatch(winner, loser):
     """Records the outcome of a single match between two players.
@@ -82,12 +72,6 @@ def reportMatch(winner, loser):
       winner:  the id number of the player who won
       loser:  the id number of the player who lost
     """
-    cdb = connect()
-    c = cdb.cursor()
-    c.execute("INSERT INTO results(match_id, winner, loser) VALUES (default, %s, %s);", (winner,loser,))
-    cdb.commit()
-    cdb.close()
-print countPlayers()
  
  
 def swissPairings():
@@ -105,10 +89,5 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-    
-
-
-
-
 
 
