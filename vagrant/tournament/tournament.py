@@ -7,43 +7,43 @@ import psycopg2
 
 
 def connect():
-    """Connect to the PostgreSQL database.  Returns a database connection."""
+    """Connect to the PostgreSQL tournament database.  Returns a database connection."""
     return psycopg2.connect("dbname=tournament")
 
 
 def deleteMatches():
-    """Remove all the match records from the database."""
+    """Removes all results records such as wins, lossses and match id's from the database"""
     cdb = connect()
     c = cdb.cursor()
-    c.execute("DELETE from results;")
+    cmd = ("DELETE FROM results;")
+    c.execute(cmd)
     cdb.commit()
     cdb.close()
 
 
 def deletePlayers():
-    """Remove all the player records from the database."""
+    """Removes all the player records from the database."""
     cdb = connect()
     c = cdb.cursor()
-    c.execute("DELETE from players;")
+    cmd = ("DELETE FROM players;")
+    c.execute(cmd)
     cdb.commit()
     cdb.close()
 
 
 def countPlayers():
-    """Returns the number of players currently registered."""
+    """Returns the number of players ready to play a match."""
     cdb = connect()
     c = cdb.cursor()
-    c.execute("SELECT count(players.player_id) as player_count FROM players;")
+    cmd = ("SELECT count(players.player_id) AS player_count FROM players;")
+    c.execute(cmd)
     player_count = c.fetchall()[0][0]
-    cdb.close()
     return player_count
-
+    cdb.close()
+ 
 
 def registerPlayer(name):
     """Adds a player to the tournament database.
-  
-    The database assigns a unique serial id number for the player.  (This
-    should be handled by your SQL database schema, not in your Python code.)
   
     Args:
       name: the player's full name (need not be unique).
@@ -51,7 +51,8 @@ def registerPlayer(name):
 
     cdb = connect()
     c = cdb.cursor()
-    c.execute("INSERT INTO players(player_id, name) VALUES (default, %s);", (name,))
+    cmd = ("INSERT INTO players(player_id, name) VALUES (default, %s);") 
+    c.execute(cmd, (name,))
     cdb.commit()
     cdb.close()
 
@@ -71,9 +72,12 @@ def playerStandings():
     """
     cdb = connect()
     c = cdb.cursor()
-    c.execute("SELECT * FROM standings;")
+    cmd = ("SELECT * FROM standings;")
+    c.execute(cmd)
     matches = c.fetchall()
     return matches
+    cdb.close()
+ 
 
 def reportMatch(winner, loser):
     """Records the outcome of a single match between two players.
@@ -84,10 +88,10 @@ def reportMatch(winner, loser):
     """
     cdb = connect()
     c = cdb.cursor()
-    c.execute("INSERT INTO results(match_id, winner, loser) VALUES (default, %s, %s);", (winner,loser,))
+    cmd = ("INSERT INTO results(match_id, winner, loser) VALUES (default, %s, %s);") 
+    c.execute(cmd, (winner,loser,))
     cdb.commit()
     cdb.close()
-print countPlayers()
  
  
 def swissPairings():
@@ -105,10 +109,16 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-    
-
-
-
-
-
+    pair = []
+    cdb = connect()
+    c = cdb.cursor()
+    cmd = ("SELECT player_id, name FROM standings WHERE total_wins = total_wins")
+    c.execute(cmd)
+    win_pair_list = c.fetchall()
+    pairing1 = win_pair_list[0] + win_pair_list[1]
+    pairing2 = win_pair_list[2] + win_pair_list[3]
+    pair.append(pairing1)
+    pair.append(pairing2)
+    return pair
+    cdb.close()
 
