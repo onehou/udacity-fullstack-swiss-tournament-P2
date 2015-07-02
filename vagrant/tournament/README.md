@@ -14,16 +14,18 @@ https://www.vagrantup.com/downloads<br>
 
 <p>
 Verify that Vagrant is installed and working by typing in the terminal: <br>
-$ vagrant -v<br>
-# will print out the Vagrant version number<br>
-</p>
+<pre>
+$ vagrant -v
+# will print out the Vagrant version number
+</pre>
 
 <h3>Clone the Repository</h3>
 Once you are sure that VirtualBox and Vagrant are installed correctly execute the following:
-
-$ git clone https://github.com/p00gz/udacity-swiss-tournament.git<br>
-$ cd udacity-swiss-tournament<br>
+<pre>
+$ git clone https://github.com/p00gz/udacity-swiss-tournament.git
+$ cd udacity-swiss-tournament
 $ cd vagrant
+</pre>
 
 <h3>Verify that these files exist in the root of the newly cloned repository:</h3><br>
 <pre>
@@ -61,4 +63,9 @@ you should see these results:
 7. After a match, players have updated standings.
 8. After one match, players with one win are paired.
 Success!  All tests pass!
+</pre>
+
+<h3>Shutdown Vagrant machine</h3>
+<pre>
+$ vagrant halt
 </pre>
