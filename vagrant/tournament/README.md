@@ -44,6 +44,8 @@ $ vagrant ssh #to login to your vagrant environment
 
 <h3>Run the tests on the Swiss Tournament</h3>
 <pre>
+$ cd /
+$ cd vagrant
 $ cd tournament
 $ python tournament_test.py
 </pre>
