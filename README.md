@@ -15,8 +15,7 @@ https://www.vagrantup.com/downloads<br>
 <p>
 Verify that Vagrant is installed and working by typing in the terminal: <br>
 <pre>
-$ vagrant -v
-# will print out the Vagrant version number
+$ vagrant -v   # will print out the Vagrant version number
 </pre>
 
 <h3>Clone the Repository</h3>
@@ -27,7 +26,7 @@ $ cd udacity-swiss-tournament
 $ cd vagrant
 </pre>
 
-<h3>Verify that these files exist in the root of the newly cloned repository:</h3><br>
+<h3>Verify that these files exist in the newly cloned repository:</h3><br>
 <pre>
 --tournament             #folder containing tournament files
 ----tournament.py        #file that contains the python functions which unit tests will run on
@@ -40,8 +39,8 @@ $ cd vagrant
 
 <h3>Launch the Vagrant Box</h3>
 <pre>
-$ vagrant up #to launch and provision the vagrant environment
-$ vagrant ssh #to login to your vagrant environment
+$ vagrant up   #to launch and provision the vagrant environment
+$ vagrant ssh  #to login to your vagrant environment
 </pre>
 
 <h3>Enter the Swiss Tournament</h3>
@@ -54,7 +53,7 @@ $ cd tournament
 <h3>Initialize the database</h3>
 <pre>
 $ psql
-> \i tournament.sql
+psql> \i tournament.sql
 </pre>
 
 <h3>Run the unit tests</h3>
