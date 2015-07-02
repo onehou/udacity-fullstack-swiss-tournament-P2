@@ -1,8 +1,6 @@
 CREATE DATABASE tournament;
 \c tournament;
 
-DROP TABLE players, results CASCADE;
-
 CREATE TABLE players (
         player_id serial PRIMARY KEY,
         name varchar (25) NOT NULL
@@ -29,14 +27,3 @@ SELECT players.player_id, players.name,
     AS total_matches
 FROM players
 ORDER BY total_wins DESC, total_matches DESC;
-
-
-
-
-
-
-
-
-
-
-
