@@ -44,11 +44,21 @@ $ vagrant up #to launch and provision the vagrant environment
 $ vagrant ssh #to login to your vagrant environment
 </pre>
 
-<h3>Run the tests on the Swiss Tournament</h3>
+<h3>Enter the Swiss Tournament</h3>
 <pre>
 $ cd /
 $ cd vagrant
 $ cd tournament
+</pre>
+
+<h3>Initialize the database</h3>
+<pre>
+$ psql
+> \i tournament.sql
+</pre>
+
+<h3>Run the unit tests</h3>
+<pre>
 $ python tournament_test.py
 </pre>
 
