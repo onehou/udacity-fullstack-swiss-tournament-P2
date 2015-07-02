@@ -27,21 +27,25 @@ $ cd vagrant
 
 <h3>Verify that these files exist in the root of the newly cloned repository:</h3><br>
 <pre>
---tournament  #folder containing tournament files
-----tournament.py  #file that contains the python functions which unit tests will run on
-----tournament_test.py  #unit tests for tournament.py
-----tournament.sql  #postgresql database
---Vagrantfile  #template that launches the Vagrant environment
+--tournament             #folder containing tournament files
+----tournament.py        #file that contains the python functions which unit tests will run on
+----tournament_test.py   #unit tests for tournament.py
+----tournament.sql       #postgresql database
+--Vagrantfile            #template that launches the Vagrant environment
 --pg_config.sh  #shell script provisioner called by Vagrantfile that performs some configurations 
 </pre
 
 <h3>Launch the Vagrant Box</h3>
+<pre>
 $ vagrant up #to launch and provision the vagrant environment
 $ vagrant ssh #to login to your vagrant environment
+</pre>
 
 <h3>Run the tests on the Swiss Tournament</h3>
+<pre>
 $ cd tournament
 $ python tournament_test.py
+</pre>
 
 you should see these results:
 <pre>
