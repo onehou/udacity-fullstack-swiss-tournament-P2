@@ -32,7 +32,8 @@ $ cd vagrant
 ----tournament_test.py   #unit tests for tournament.py
 ----tournament.sql       #postgresql database
 --Vagrantfile            #template that launches the Vagrant environment
---pg_config.sh           #shell script provisioner called by Vagrantfile that performs some configurations 
+--pg_config.sh           #shell script provisioner called by Vagrantfile that performs
+                          some configurations 
 </pre
 
 <h3>Launch the Vagrant Box</h3>
