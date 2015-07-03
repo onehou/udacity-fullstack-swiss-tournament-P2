@@ -79,3 +79,17 @@ Success!  All tests pass!
 <pre>
 $ vagrant halt
 </pre>
+
+<h3>Destroy the Vagrant machine</h3>
+<pre>
+$ vagrant destroy
+</pre>
+
+<h3>Shoutouts & Rerferences</h3>
+https://wiki.postgresql.org/wiki/Using_psycopg2_with_PostgreSQL
+http://bobby-tables.com
+http://www.tutorialspoint.com/postgresql/
+http://www.postgresqltutorial.com
+http://initd.org/psycopg/docs/
+www.postgresql.org
+
