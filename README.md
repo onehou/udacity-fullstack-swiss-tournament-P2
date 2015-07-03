@@ -86,10 +86,10 @@ $ vagrant destroy
 </pre>
 
 <h3>Shoutouts & Rerferences</h3>
-https://wiki.postgresql.org/wiki/Using_psycopg2_with_PostgreSQL
-http://bobby-tables.com
-http://www.tutorialspoint.com/postgresql/
-http://www.postgresqltutorial.com
-http://initd.org/psycopg/docs/
-www.postgresql.org
+https://wiki.postgresql.org/wiki/Using_psycopg2_with_PostgreSQL<br>
+http://bobby-tables.com<br>
+http://www.tutorialspoint.com/postgresql/<br>
+http://www.postgresqltutorial.com<br>
+http://initd.org/psycopg/docs/<br>
+www.postgresql.org<br>
 
