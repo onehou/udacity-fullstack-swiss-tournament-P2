@@ -53,7 +53,8 @@ $ cd tournament
 <h3>Initialize the database</h3>
 <pre>
 $ psql
-psql> \i tournament.sql
+vagrant=> \i tournament.sql
+vagrant=> \q
 </pre>
 
 <h3>Run the unit tests</h3>
