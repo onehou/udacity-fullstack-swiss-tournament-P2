@@ -39,8 +39,9 @@ def countPlayers():
     cmd = ("SELECT count(players.player_id) AS player_count FROM players;")
     c.execute(cmd)
     player_count = c.fetchall()[0][0]
-    return player_count
     cdb.close()
+    return player_count
+    
  
 
 def registerPlayer(name):
@@ -73,8 +74,9 @@ def playerStandings():
     cmd = ("SELECT * FROM standings;")
     c.execute(cmd)
     matches = c.fetchall()
-    return matches
     cdb.close()
+    return matches
+    
  
 
 def reportMatch(winner, loser):
@@ -115,6 +117,7 @@ def swissPairings():
     pairing2 = win_pair_list[2] + win_pair_list[3]
     pair.append(pairing1)
     pair.append(pairing2)
-    return pair
     cdb.close()
+    return pair
+    
 
