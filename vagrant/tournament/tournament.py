@@ -18,7 +18,7 @@ def connect(database_name="tournament"):
 def deleteMatches():
     """Removes all results records such as wins, lossses and match id's from the database"""
     cdb, c = connect()
-    cmd = ("DELETE FROM results;")
+    cmd = ("TRUNCATE results CASCADE;")
     c.execute(cmd)
     cdb.commit()
     cdb.close()
@@ -27,7 +27,7 @@ def deleteMatches():
 def deletePlayers():
     """Removes all the player records from the database."""
     cdb, c = connect()
-    cmd = ("DELETE FROM players;")
+    cmd = ("TRUNCATE players CASCADE;")
     c.execute(cmd)
     cdb.commit()
     cdb.close()
