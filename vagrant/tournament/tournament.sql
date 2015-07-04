@@ -16,14 +16,14 @@ CREATE TABLE results (
 
 CREATE VIEW standings AS
 SELECT players.player_id, players.name,
-(SELECT count(results.winner) 
-    FROM results 
-    WHERE players.player_id = results.winner) 
+(SELECT count(results.winner)
+    FROM results
+    WHERE players.player_id = results.winner)
     AS total_wins,
-(SELECT count(results.match_id) 
-    FROM results 
+(SELECT count(results.match_id)
+    FROM results
     WHERE players.player_id = results.winner
-    OR players.player_id = results.loser) 
+    OR players.player_id = results.loser)
     AS total_matches
 FROM players
 ORDER BY total_wins DESC, total_matches DESC;
