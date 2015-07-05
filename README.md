@@ -77,10 +77,10 @@ You should see these results:
 
 
 ###Shoutouts & Rerferences###
-*https://wiki.postgresql.org/wiki/Using_psycopg2_with_PostgreSQL
-*http://bobby-tables.com
-*http://www.tutorialspoint.com/postgresql
-*http://www.postgresqltutorial.com
-*http://initd.org/psycopg/docs/
-*www.postgresql.org
+* https://wiki.postgresql.org/wiki/Using_psycopg2_with_PostgreSQL
+* http://bobby-tables.com
+* http://www.tutorialspoint.com/postgresql
+* http://www.postgresqltutorial.com
+* http://initd.org/psycopg/docs/
+* www.postgresql.org
 
