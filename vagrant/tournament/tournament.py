@@ -35,7 +35,7 @@ def delete_matches():
     """
 
     db_connect, cursor = connect()
-    query = ("TRUNCATE results CASCADE;")
+    query = ("DELETE FROM results;")
     cursor.execute(query)
     db_connect.commit()
     db_connect.close()
@@ -52,7 +52,7 @@ def delete_players():
     """
 
     db_connect, cursor = connect()
-    query = ("TRUNCATE players CASCADE;")
+    query = ("DELETE FROM players;")
     cursor.execute(query)
     db_connect.commit()
     db_connect.close()
@@ -75,7 +75,7 @@ def count_players():
     db_connect, cursor = connect()
     query = ("SELECT count(players.player_id) AS player_count FROM players;")
     cursor.execute(query)
-    player_count = cursor.fetchall()[0][0]
+    player_count = cursor.fetchone()[0]
     db_connect.close()
     return player_count
 
