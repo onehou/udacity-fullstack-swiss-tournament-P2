@@ -206,9 +206,9 @@ def swiss_pairings():
     db_connect, cursor = connect()
     query = ("SELECT player_id, name \
                 FROM standings ORDER BY total_wins DESC;")
-
     cursor.execute(query)
     win_pair_list = cursor.fetchall()
+
     if len(win_pair_list) % 2 == 0:
         for i in range(0, len(win_pair_list), 2):
             collect_players = win_pair_list[i][0], win_pair_list[i][1], \
