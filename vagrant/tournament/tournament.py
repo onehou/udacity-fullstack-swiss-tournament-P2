@@ -175,34 +175,48 @@ def swiss_pairings():
         name2: the second player's name
 
     'query' stores the postgresql commands to be executed by the
-    cursor object which collects a list of players tuples where the
-    total_wins column in the standings view is the same.
+    cursor object which collects a list of players tuples ordered
+    by total_wins column.
 
-    'win_pair_list' stores the list of tuples returned by database.
+    'win_pair_list' stores the list of tuples returned by cursor execution.
+        eg: [(5202, 'Twilight Sparkle'), (5204, 'Applejack'),
+             (5203, 'Fluttershy'), (5205, 'Pinkie Pie')]
 
-    'pairing1' and 'pairing2' are assigned the concatenation of each
-    player tuple pairing that includes the player_id and name.
+    The 'if' statement will check to make sure there are is an even number
+    of tuples in the tournament list.
 
-    'pairing1' and 'pairing2' are then appended to the empty pair list to
-    create a pair of tuples.
+    The 'for' loop will loop over the list of tuples for the length of the list
+    making 2 steps for each loop.
 
-    The pair of tuples are then returned for use in the next round of the
-    tournament.
+    'collect_players' is assigned the value of 1st and 3rd, 2 and 4th players
+     to create a list of at least two tuples of player pairings.
+        eg: win_pair_list[i][0]:   player 1,3 ids
+            win_pair_list[i][1]:   player 1,3 names
+            win_pair_list[i+1][0]: player 2,4 ids
+            win_pair_list[i+1][1]: player 2,4 names
+
+    The loop will return a pair of tuples for the unit test to unpack:
+        eg: [(5232, 'Twilight Sparkle', 5234, 'Applejack'),
+             (5233, 'Fluttershy', 5235, 'Pinkie Pie')]
+
     """
 
     pair = []
+
     db_connect, cursor = connect()
     query = ("SELECT player_id, name \
-              FROM standings \
-              WHERE total_wins = total_wins")
+                FROM standings ORDER BY total_wins DESC;")
+
     cursor.execute(query)
     win_pair_list = cursor.fetchall()
+    if len(win_pair_list) % 2 == 0:
+        for i in range(0, len(win_pair_list), 2):
+            collect_players = win_pair_list[i][0], win_pair_list[i][1], \
+                              win_pair_list[i+1][0], win_pair_list[i+1][1]
+            pair.append(collect_players)
+        return pair
 
-    pairing1 = win_pair_list[0] + win_pair_list[1]
-    pairing2 = win_pair_list[2] + win_pair_list[3]
+    else:
+        print "There are an uneven number of players in the tournament"
 
-    pair.append(pairing1)
-    pair.append(pairing2)
     db_connect.close()
-
-    return pair

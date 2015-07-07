@@ -83,4 +83,5 @@ You should see these results:
 * http://www.postgresqltutorial.com
 * http://initd.org/psycopg/docs/
 * www.postgresql.org
+* https://stackoverflow.com/questions/14880192/iterate-a-list-of-tuples
 
