@@ -76,7 +76,7 @@ You should see these results:
 	$ vagrant destroy
 
 
-###Shoutouts & Rerferences###
+###Shoutouts & References###
 * https://wiki.postgresql.org/wiki/Using_psycopg2_with_PostgreSQL
 * http://bobby-tables.com
 * http://www.tutorialspoint.com/postgresql
